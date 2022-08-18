@@ -21,9 +21,9 @@ Create a tempoary cron job by using `crontab -e` and adding the following line t
 
 `* * * * * /usr/bin/env > ~/.local/share/run-as-cron/cron-env`
 
-Once this successfully runs, you can either delete it or change it so it runs once a day. Running it daily will ensure the configuration information is kept fresh, although the cron environment should not change often (if ever). But to be on the safe side, I went back into `crontab -e` and editted the line so that it now runs at 1:15 AM each morning:
+Once this successfully runs, you can either delete it or change it so it runs once a day. Running it daily will ensure the configuration information is kept fresh, although the cron environment should not change often (if ever). But to be on the safe side, I went back into `crontab -e` and editted the line so that it now runs each time I reboot:
 
-`15 1 * * * /usr/bin/env > ~/.local/share/run-as-cron/cron-env`
+`@reboot /usr/bin/env > ~/.local/share/run-as-cron/cron-env`
 
 Now go to the directory where you keep your Software ocdr Programs. You can either download the file or, if you have git installed, create a clone:
 
