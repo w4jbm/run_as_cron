@@ -98,17 +98,17 @@ $
 ```
 On my system, `sendmail` is in the `/sbin/sendmail` subdirectory--a directory cron does not access. So when I try to run `sendmail` as part of a script started by cron, it may fail like this:
 ```
-$ echo "Subject: sendmail test" | sendmail -v jim30109@gmail.com
+$ echo "Subject: sendmail test" | sendmail -v name@email.com
 ...
 _Lots of good stuff here!!!_
 ...
-$ run-as-cron 'echo "Subject: sendmail test" | sendmail -v jim30109@gmail.com'
-/bin/sh: 1: echo "Subject: sendmail test" | sendmail -v jim30109@gmail.com: not found
+$ run-as-cron 'echo "Subject: sendmail test" | sendmail -v name@email.com'
+/bin/sh: 1: echo "Subject: sendmail test" | sendmail -v name@email.com: not found
 $
 ```
 Since `which` told me where to find `sendmail`, I know that I need to use `/sbin/sendmail` instead of just `sendmail` to make things work:
 ```
-$ run-as-cron 'echo "Subject: sendmail test" | /sbin/sendmail -v jim30109@gmail.com'
+$ run-as-cron 'echo "Subject: sendmail test" | /sbin/sendmail -v name@email.com'
 ...
 _Lots of good stuff here!!!_
 ...
