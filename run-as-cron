@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# run-as-cron
+#
+# This shell script lets you run another script as if that
+# script were being run as a cron job. This is useful for
+# troubleshooting when a job does not seem to work as
+# expected.
+#
+# This shell assumes that a copy of the cron environment
+# has been created using the instructions found at:
+#
+# https://github.com/w4jbm/run_as_cron
+# 
+# Note: The most common issue I've found is that the search
+# path for scripts running under cron does not include some
+# of the directories found in the path used at the normal
+# shell prompt.
+#
+# Note: Commands with whitespace must be enclosed within
+# quote marks or things will fail.
+#
+# First, load the cron environment we have previously created
+. ~/.local/share/run-as-cron/cron-env
+#
+# One of the variables loaded was $SHELL and we'll use that now
+exec /usr/bin/env -i "$SHELL" -c ". $PWD/.local/share/run-as-cron/cron-env; $1"
