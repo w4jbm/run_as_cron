@@ -7,9 +7,9 @@ Using cron to run scripts is a handy way to automate routine tasks. A very commo
 
 I'm batting a thousand on the answer I've given to people asking that question lately. Almost always when this happens it is because the `$PATH` used to search for commands in the shell started by cron does not match the `$PATH` you have when you run something from the command line. Typically what happens is the script being run by cron can't find the command, so things get 'skipped' and don't work as expected.
 
-If you set up the mail system, you will actually get notifications when errors like this happen along with enough information to help with debugging, but few people do this. A handy alternative is to be able to run a scrip just like it was cron kicking off the job. Sometimes people will use crontab to edit the table of cron jobs to do this, but this is an extra step that you have to remember to back out once things are working and just another chance for a typo to creap into things. You also have to wait what always seems like it MUST be more than a minute for your changes to run.
+If you set up the mail system, you will actually get notifications when errors like this happen along with enough information to help with debugging, but few people do this. A handy alternative is to be able to run a scrip just like it was cron kicking off the job. Sometimes people will use crontab to edit the table of cron jobs to do this, but this is an extra step that you have to remember to back out once things are working and just another chance for a typo to creep into things. You also have to wait what always seems like it MUST be more than a minute for your changes to run.
 
-Out of this was born run-as-cron. This is not a new idea and there are several versions flating around (see the References towards the end). But I wanted something that had better step-by-step instructions and some flexibility that I didn't see in the examples I found after a quick search.
+Out of this was born run-as-cron. This is not a new idea and there are several versions floating around (see the References towards the end). But I wanted something that had better step-by-step instructions and some flexibility that I didn't see in the examples I found after a quick search.
 
 ## INSTALLING
 
@@ -21,11 +21,11 @@ Create a tempoary cron job by using `crontab -e` and adding the following line t
 
 `* * * * * /usr/bin/env > ~/.local/share/run-as-cron/cron-env`
 
-Once this successfully runs, you can either delete it or change it so it runs once a day. Running it daily will ensure the configuration information is kept fresh, although the cron environment should not change often (if ever). But to be on the safe side, I went back into `crontab -e` and editted the line so that it now runs each time I reboot:
+Once this successfully runs, you can either delete it or change it so it runs once a day. Running it daily will ensure the configuration information is kept fresh, although the cron environment should not change often (if ever). But to be on the safe side, I went back into `crontab -e` and edited the line so that it now runs each time I reboot:
 
 `@reboot /usr/bin/env > ~/.local/share/run-as-cron/cron-env`
 
-Now go to the directory where you keep your Software ocdr Programs. You can either download the file or, if you have git installed, create a clone:
+Now go to the directory where you keep your Software or Programs. You can either download the file or, if you have git installed, create a clone:
 
 `$ git clone https://github.com/w4jbm/run_as_cron/`
 
@@ -69,7 +69,7 @@ $ run-as-cron 'echo $SHELL'
 /bin/sh
 $ 
 ```
-While cron jobs make use of `sh`, the Bourne shell, the command line we typically are working with is using `bash`, the Bourne again shell. This is reasonable since things like command line completion and command history are great when we're at the keyboard, but shouldn't be needed by an automated scripe.
+While cron jobs make use of `sh`, the Bourne shell, the command line we typically are working with is using `bash`, the Bourne again shell. This is reasonable since things like command line completion and command history are great when we're at the keyboard, but shouldn't be needed by an automated script.
 
 The difference that causes the most headaches is around the `$PATH`:
 ```
