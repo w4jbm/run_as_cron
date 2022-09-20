@@ -116,6 +116,8 @@ $
 ```
 So, as expected, all that was needed to resolve the issue was putting the full path for the command that seemed to 'fail' (or not be executed) when running as a cron job.
 
+NOTE: Another thing I found with sendmail is that if you have things like the recipient list and subject at the first of the file, the first line of the message itself cannot contain a `:`. I had a first line that was something like: `Directory Contents:`. Things consistently failed until I changed this to `Directory Contents...`.
+
 ## REFERENCES
 
 I have seen similar scripts around, but the two sources I used when I decided it was time to put this tool together were [Marco's answer out on serverfault.com](https://serverfault.com/questions/85893/running-a-cron-job-manually-and-immediately) and [Micheal Barton's answer (with edits by Matyas) out on stackexchange.com](https://unix.stackexchange.com/questions/42715/how-can-i-make-cron-run-a-job-right-now-for-testing-debugging-without-changing).
